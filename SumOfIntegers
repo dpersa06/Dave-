@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class SumOfIntegers {
+	public static void main(String [] args) {
+		Scanner input = new Scanner(System.in);
+		final int EXIT_NUM = -999;
+		int num;
+		int sum;
+		
+		System.out.print("Enter an integer for n (exit for -999): ");
+		num = input.nextInt();
+		
+		while(num != EXIT_NUM) {
+			sum = sumOfIntegers(num);
+			System.out.println("The sum of the first " + num + " integers: " + sum);
+			System.out.print("\nEnter an integer for n (exit for -999) : ");
+			num = input.nextInt();
+			
+		}
+		System.out.println("Thank You.");
+		
+	}
+	public static int sumOfIntegers(int n) {
+		if(n <= 0)
+			return 0 ;
+		else
+			return n + sumOfIntegers(n-1);
+	}
+
+}
