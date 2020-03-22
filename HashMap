@@ -1,0 +1,38 @@
+import java.util.*;
+public class HashMapReverseKey {
+	public static void main(String [] args) {
+		HashMap<String,Integer> mountains = new HashMap<String,Integer>();
+		mountains.put("Everest", 29029);
+		mountains.put("K2",28251);
+		mountains.put("Kanochen",20335);
+		mountains.put("Denali", 20335);
+		printMap(mountains);
+		System.out.println(mountains);
+		System.out.println(mountains.entrySet());
+		
+		
+	}
+	public static void printMap(HashMap<String,Integer> map) {
+		System.out.println("Map Contains: ");
+		for(Integer valueMountainHeight : map.values()) {
+			System.out.print(valueMountainHeight + "------>");
+			List<String> keys = new ArrayList<String>();
+			for(String key:map.keySet()) {
+				if(map.get(key).equals(valueMountainHeight)) {
+					keys.add(key);
+					
+					
+				}
+			
+			}
+			System.out.println(keys);
+		
+			
+			System.out.println();
+			
+		}
+		System.out.println();
+		
+	}
+
+}
