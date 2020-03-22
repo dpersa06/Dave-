@@ -1,0 +1,99 @@
+import java.util.*;
+public class Appointments {
+	private int  slotCounter;
+	private String timeslot;
+	private boolean SlotFull;
+	public static void main(String [] args) {
+		//Creates a two dimensional schedule array
+		String [][] schedule = new String[6][6];
+		Scanner kb = new Scanner(System.in);
+		do {
+			if(slotCounter < 6) {
+				System.out.println("Enter your preferred time: ");
+				timeslot = kb.nextLine();
+				try {
+					for(i=0;i<6;i++) {
+						if((timeslot.equals(schedule[i][0])) && (Integer.parseInt(timeslot)>6))
+							throw new InvalidTimeException();
+					}
+					catch(InvalidTimeException e) {
+						System.out.println(e.getMessage());
+						{
+							for(j=0;j<6;j++) {
+								try {
+									if(timeslot.equal(schedule[j][0]))    // if time requested exists
+									{
+										if(schedule[j][1] != null) //check if time slot is free
+										{
+											if(!SlotFull) // user picked occupied time, show available time slots
+											{
+												System.out.println("Available time slots: ");
+												for(k=0;k<6;k++) 
+													if(schedule[k][1] == null)
+														System.out.println(schedule[k][1] + "PM");
+											}
+											throw new TimeinUseException();
+										}
+										// if the time is free, get the name of the student
+										else {
+											System.out.println("Enter student name : ");
+											name = kb.nextLine();
+											schedule[j][1] = name;
+											slotCounter++;
+											break;
+										}
+										
+									}
+								}
+								catch(TimeInUseException e) {
+									System.out.println(e.getMessage());
+								}
+							}
+						}
+						// if the timeslot is full (slotCounter >=6)
+						else {
+							System.out.println("All timeslots are full\n ");
+							SlotFull = true;
+						}
+						
+					}
+					while(!SlotFull);
+					//DISPLAY SCHEDULED APPOINTMENTS
+					System.out.println("\n\nScheduled appointments :");
+					System.out.println("\n**********************\n");
+					for(i=0;i<6;i++)
+						System.out.println(schedule[i][0] + "PM reserved for : " + schedule[i][1]);
+				}
+			}
+			
+					
+					
+					
+				}
+				
+			}
+		}
+	}
+	// Exception Classes
+  public class InvalidTimeException extends Exception{
+	public InvalidTimeException() {
+		super("This timeslot is invalid.");
+	}
+	public InvalidTimeException(String message) {
+		super(message);
+	}
+
+}
+
+
+public class TimeinUseException extends Exception {
+	public TimeinUseException() {
+		super("You picked an already occupied time slot, please select another time. ");
+		
+	}
+	public TimeinUseException(String message) {
+		super(message);
+	}
+	
+
+}
